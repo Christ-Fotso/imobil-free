@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bene</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="card mb-3">
+    <img th:src="${bien.imageUrl}" class="card-img-top" alt="Immagine del Bene">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${bien.type}"></h5>
+        <p class="card-text" th:text="'Indirizzo: ' + ${bien.adresse}"></p>
+        <p class="card-text" th:text="'Città: ' + ${bien.ville}"></p>
+        <p class="card-text" th:text="'Numero di stanze: ' + ${bien.nbPieces}"></p>
+        <p class="card-text" th:text="'Superficie: ' + ${bien.superficie} + ' m²'"></p>
+        <p class="card-text" th:text="'Prezzo: ' + ${bien.prix} + ' €'"></p>
+        <div th:if="${loggedInUser != null and bien.user.id == loggedInUser.id}">
+            <a th:href="@{/biens/edit/{id}(id=${bien.id})}" class="btn btn-warning">Modifica</a>
+            <a th:href="@{/biens/delete/{id}(id=${bien.id})}" class="btn btn-danger">Elimina</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

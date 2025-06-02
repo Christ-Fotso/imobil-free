@@ -1,0 +1,18 @@
+<!-- src/main/resources/templates/biens/bien.html -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="${bien.imageUrl}" class="card-img-top" alt="Immagine del bene" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title">${bien.type}</h5>
+            <p class="card-text">Indirizzo: ${bien.adresse}</p>
+            <p class="card-text">Città: ${bien.ville}</p>
+            <p class="card-text">Numero di stanze: ${bien.nbPieces}</p>
+            <p class="card-text">Superficie: ${bien.superficie} m²</p>
+            <p class="card-text">Prezzo: ${bien.prix} €</p>
+            <div class="d-flex justify-content-between">
+                <a href="/biens/edit/${bien.id}" class="btn btn-primary" th:if="${user != null and user.id == bien.user.id}">Modifica</a>
+                <a href="/biens/delete/${bien.id}" class="btn btn-danger" th:if="${user != null and user.id == bien.user.id}">Elimina</a>
+            </div>
+        </div>
+    </div>
+</div>

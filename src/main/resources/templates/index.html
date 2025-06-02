@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina iniziale</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <!-- Zona di ricerca -->
+    <form th:action="@{/search}" method="get" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" name="ville" placeholder="Città">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="type" placeholder="Tipo di immobile">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" name="minSuperficie" placeholder="Superficie min (m²)">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" name="maxSuperficie" placeholder="Superficie max (m²)">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" name="minPrix" placeholder="Prezzo min (F)">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" name="maxPrix" placeholder="Prezzo max (F)">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info">Cerca</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Pulsanti di azione -->
+    <div class="row mb-3">
+        <div class="col">
+            <a href="/biens/add" class="btn btn-primary">Aggiungi un immobile</a>
+        </div>
+    </div>
+
+    <!-- Visualizzazione immobili -->
+    <div class="row">
+        <div th:each="bien : ${biens}" class="col-md-4 d-flex align-items-stretch">
+            <div class="card mb-4">
+                <img th:src="@{${bien.imageUrl}}" alt="Immagine dell'immobile" class="card-img-top" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${bien.type}"></h5>
+                    <p class="card-text" th:text="'Indirizzo: ' + ${bien.adresse}"></p>
+                    <p class="card-text" th:text="'Città: ' + ${bien.ville}"></p>
+                    <p class="card-text" th:text="'Numero di stanze: ' + ${bien.nbPieces}"></p>
+                    <p class="card-text" th:text="'Superficie: ' + ${bien.superficie} + ' m²'"></p>
+                    <p class="card-text" th:text="'Prezzo: ' + ${bien.prix} + ' Franco CFA'"></p>
+                    <a th:href="@{/biens/edit/{id}(id=${bien.id})}" class="btn btn-warning">Modifica</a>
+                    <a th:href="@{/biens/delete/{id}(id=${bien.id})}" class="btn btn-danger">Elimina</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

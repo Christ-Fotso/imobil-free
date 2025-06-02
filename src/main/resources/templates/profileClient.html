@@ -1,0 +1,55 @@
+<!-- profileClient.html -->
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Il Mio Profilo - Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; }
+        .navbar { background: rgba(255,255,255,0.95)!important; backdrop-filter: blur(10px); box-shadow:0 8px 32px rgba(0,0,0,0.1); }
+        .navbar-brand { font-weight:700; background:linear-gradient(45deg,#667eea,#764ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .main-container { background:rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius:20px; margin:40px auto; padding:30px; max-width:800px; }
+        .page-title { color:white; text-align:center; margin-bottom:25px; font-weight:600; }
+        .card { border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1); margin-bottom:20px; }
+        .table thead th { border-bottom:none; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="bi bi-person-circle"></i> Profilo Cliente</a>
+    </div>
+</nav>
+<div class="container">
+    <div class="main-container">
+        <h1 class="page-title" th:text="'Benvenuto, ' + ${user.name}"></h1>
+        <h3 class="text-white">I tuoi affitti</h3>
+        <div th:if="${#lists.isEmpty(transactions)}" class="text-white text-center py-5">
+            <i class="bi bi-house-heart" style="font-size:3rem;"></i>
+            <p>Nessun affitto effettuato.</p>
+        </div>
+        <table class="table bg-white rounded shadow-sm" th:if="${!#lists.isEmpty(transactions)}">
+            <thead class="bg-light">
+            <tr>
+                <th>Bene</th><th>Inizio</th><th>Fine</th><th>Costo Mensile</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="t : ${transactions}">
+                <td th:text="${t.bien.type} + ' a ' + ${t.bien.ville}"></td>
+                <td th:text="${t.startDate}"></td>
+                <td th:text="${t.endDate}"></td>
+                <td th:text="${#numbers.formatDecimal((t.endDate.toEpochDay() - t.startDate.toEpochDay()) / 30 * t.bien.prix,0,'COMMA',0,'POINT')} + ' €'"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="mt-4 bg-white p-4 rounded shadow-sm" th:if="${user.type == 'client'}">
+            <h4>Riepilogo Spese</h4>
+            <p>Spesa Mensile Totale: <strong th:text="${#numbers.formatDecimal(totalMonthlyExpense,0,'COMMA',0,'POINT')} + ' €'"></strong></p>
+            <p>Spesa Totale: <strong th:text="${#numbers.formatDecimal(totalExpense,0,'COMMA',0,'POINT')} + ' €'"></strong></p>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

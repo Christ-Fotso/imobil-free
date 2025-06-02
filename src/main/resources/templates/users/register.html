@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Registrazione</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background-image: linear-gradient(to right, #4e63d7 0%, #76bfe9 100%) !important;
+            margin-top: 20px;
+        }
+        .register-box {
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .form-wrap {
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+        }
+        .form-group .zmdi {
+            position: absolute;
+            color: #fff;
+            background-color: #4e63d7;
+            border-radius: 5px;
+            height: 100%;
+            width: 45px;
+            text-align: center;
+            font-size: 20px;
+            padding-top: 13px;
+        }
+        .form-group input {
+            padding-left: 60px;
+        }
+        .form-control {
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #858585;
+        }
+        .btn-custom {
+            background-color: #4e63d7;
+            color: #fff;
+        }
+        .socials a {
+            width: 35px;
+            height: 35px;
+            background-color: #6893e1;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            padding-top: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" crossorigin="anonymous" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-11 mt-60 mx-md-auto">
+            <div class="register-box bg-white pl-lg-5 pl-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6">
+                        <div class="form-wrap bg-white">
+                            <h4 class="btm-sep pb-3 mb-5">Registrazione</h4>
+                            <form class="form" method="post" th:action="@{/users/register}">
+                                <div class="form-group position-relative">
+                                    <span class="zmdi zmdi-account"></span>
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Nome" required>
+                                </div>
+                                <div class="form-group position-relative">
+                                    <span class="zmdi zmdi-email"></span>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Indirizzo email" required>
+                                </div>
+                                <div class="form-group position-relative">
+                                    <span class="zmdi zmdi-lock"></span>
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <div class="form-group position-relative">
+                                    <span class="zmdi zmdi-account-box-mail"></span>
+                                    <select id="type" name="type" class="form-control">
+                                        <option value="proprietario">____Proprietario</option>
+                                        <option value="cliente">____Cliente</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-30">
+                                    <button type="submit" class="btn btn-lg btn-custom btn-block">Registrati</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content text-center">
+                            <div class="border-bottom pb-5 mb-5">
+                                <h3 class="c-black">Sei già registrato?</h3>
+                                <a href="/users/login" class="btn btn-custom">Accedi</a>
+                            </div>
+                            <h5 class="c-black mb-4 mt-n1">Oppure registrati con</h5>
+                            <div class="socials">
+                                <a href="#" class="zmdi zmdi-facebook"></a>
+                                <a href="#" class="zmdi zmdi-twitter"></a>
+                                <a href="#" class="zmdi zmdi-google"></a>
+                                <a href="#" class="zmdi zmdi-instagram"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
