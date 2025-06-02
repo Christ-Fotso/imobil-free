@@ -15,9 +15,8 @@ public class EmailSender {
 
         // Configuration des propriétés SMTP
         String host = "smtp.gmail.com";  // Utilisation de Gmail pour l'exemple
-        final String username = "djechefotsochristarole@gmail.com";  // Votre adresse email
-        final String password = "uzhmgpfjgvdcomsq";  // Votre mot de passe ou mot de passe d'application
-
+        final String username = "astridcyrielle11091998@gmail.com";  // Votre adresse email
+        final String password = "jpgctinptjtpdkec";
         // Paramètres du serveur
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
